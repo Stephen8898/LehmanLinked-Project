@@ -1,0 +1,58 @@
+{% extends 'llinked/base.html' %}
+{% block content %}
+<div class="main">
+        <div class="container"> 
+    <div class="content-section">
+            <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                     <div class="media"> 
+                        <img class="img-thumbnail profile-img" src="{{ user.profile.image.url }}">
+                    </div>
+                  <h1 class="display-4" id = "personName">{{user.first_name}} {{user.last_name}}</h1>
+                  <!-- <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p> -->
+                  {% if user.profile.usertype == 'I' %}
+                    <h2>Instructor</h2>
+                  {%elif user.profile.usertype == 'S' %}
+                    <h2>Student</h2>    
+                  {%else %}
+                    <h2>Alumni</h2>     
+                  {%endif %}
+                </div>
+              </div>
+              <a href="{%url 'update' %}"><button class="btn btn-primary" >change profile</button></a>
+          
+          
+        <div class="container" id = "GridContainer">
+          <div class="row" >
+            <div class="col-lg-6">
+            <h2>Bio</h2>
+                <div id="BioSection">
+                    <p>{{user.profile.bio}}</p>	
+                </div>
+            </div>
+    
+            {% if user.profile.usertype == 'I'%}
+                <h3>Department: {{user.instructor.dept}}</h3>
+            {% elif user.profile.usertype == 'A'%}
+                <h3>Grad date: {{user.alumni.grad_date}}</h3>
+            {% else %}
+                <div class="col-lg-6 CourseList">
+                  <h2>Course List</h2>
+                  <ul>
+                      <li>Clas1</li>
+                      <li>Clas2</li>
+                      <li>Clas2</li>
+                      <li>Clas2</li>
+                      <li>Clas2</li>
+                      <li>Clas2</li>
+                      <li>Clas2</li>
+                      <li>Clas2</li>
+                      <li>Clas2</li>
+                  </ul>
+                </div>
+           {% endif%}
+           </div>
+        </div>
+    </div> 
+</div>
+{% endblock content%}

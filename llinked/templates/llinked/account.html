@@ -1,0 +1,52 @@
+{% extends 'llinked/base.html' %}
+{% block content %}
+<div class="main">
+    <div class="container"> 
+    <div class="content-section">
+        <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                 <div class="media"> 
+                    <img class="img-thumbnail profile-img" src="{{ image }}">
+                </div>
+              <h1 class="display-4" id = "personName">{{first_name}} {{last_name}}</h1>
+              <!-- <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p> -->
+              {% if usertype == 'I' %}
+                <h2>Instructor</h2>
+              {%elif usertype == 'S' %}
+                <h2>Student</h2>    
+              {%else %}
+                <h2>Alumni</h2>     
+              {%endif %}
+            </div>
+          </div>
+        
+    <div class="container" id = "GridContainer">
+      <div class="row" >
+        <div class="col-lg-6">
+        <h2>Bio</h2>
+            <div id="BioSection">
+                <p>{{.bio}}</p>	
+            </div>
+        </div>
+      
+        {% if usertype == 'I'%}
+            <h3>Department: {{dept}}</h3>
+        {% elif usertype == 'A'%}
+            <h3>Grad date: {{alumni}}</h3>
+        {% else %}
+            <div class="col-lg-6 CourseList">
+              <h2>Course List</h2>
+              <ul>
+                  <li>Clas1</li>
+                  <li>Clas2</li>
+                  <li>Clas2</li>
+                  <li>Clas2</li>
+                  <li>Clas2</li>
+              </ul>
+            </div>
+       {% endif%}
+        </div>
+      </div>
+  </div> 
+</div>
+{% endblock content%}
